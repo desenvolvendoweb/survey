@@ -23,15 +23,15 @@ A ideia do teste ( aplicado por uma empresa real ) é realizar as seguintes tare
 
 Vamos para prática:
 
-Baixar o teste no link:
+Para baixar o teste no link:
 
     git clone https://github.com/desenvolvendoweb/survey.git
 
-Entrar no diretório do projeto:
+Entre no diretório do projeto:
 
     cd survey
 
-Subir o ambiente isolado ( [docker compose install documentation](https://docs.docker.com/compose/install/) ):
+Para subir o ambiente isolado ( [docker compose install documentation](https://docs.docker.com/compose/install/) ):
 
     docker-compose up
 
@@ -39,11 +39,11 @@ Pronto ! O comando irá fazer todo os resto. Irá baixar as imagens, copiar o c�
 
 Para acessar o ambiente web para adicionar as enquetes, basta acessar link:
 
-[localhost/addmin](http://localhost/admin/) login: admin senha: admin
+[http://localhost/admin](http://localhost/admin/) login: admin senha: admin
 
 Cadastre suas enquetes, com as alternativas correspondentes a cada enquete e para acessar no front-end, acesse:
 
-[localhost](http://localhost)
+[http://localhost](http://localhost)
 
 Navegue pelo menu lateral esquerdo, e após votar, note que o gráfico de pizza assume o papel no local da enquete ( porque somente poderá votar uma vez por enquete ). Se quiser votar novamente, para testar, é só abrir em uma aba anônima :).
 
@@ -51,19 +51,19 @@ Outro recurso bem interessante aplicado neste teste é API Restfull escrita em G
 
 Para acessar via navegador as boas vindas, acesse:
 
-[localhost/rest](http://localhost/rest/)
+[http://localhost/rest](http://localhost/rest/)
 
 Agora, para acessar as demais url's, é nessário instalar um interpretador de json para visualizar no próprio navegador. Se estiver usando o Google-Chrome, segue o link da extensão para ser instalada [JSONView](https://chrome.google.com/webstore/detail/jsonview/chklaanhfefbnpoihckbnefhakgolnmc?utm_source=chrome-app-launcher-info-dialog).
 
 Para visualizar usando navegador, acesse:
 
-[localhost/rest/surveys](http://localhost/rest/surveys)
+[http://localhost/rest/surveys](http://localhost/rest/surveys)
 
 Irá mostrar todas as enquetes em lista e suas alternativas.
 
 Para visualizar uma enquete especifica, acesse:
 
-[localhost/rest/survey/(ID)](http://localhost/rest/survey/1)
+[http://localhost/rest/survey/(ID)](http://localhost/rest/survey/1)
 
 Irá mostrar a enquete especifica e suas alternativas.
 
@@ -72,5 +72,13 @@ Para votar ( neste caso não será possível por navegador ) basta usar um scrip
     /rest/go/src/api/vote.sh
 
 Entre no diretório, dê permissão de execução ( chmod +x vote.sh ) e rode ele usando shell ( ./vote.sh ). O script irá votar usando método POST e retornar objetos em JSON informando se foi sucesso ou falha. lembrando que você só pode votar uma vez, caso contrário, será informado da falha !
+
+- **Algumas dicas:**
+  - Para rodar o programa docker-compose up, será preciso ter acesso root;
+  - A porta 80 será usada pelo programa Nginx, então antes de subir, favor liberá-la;
+  - Para maiores informações de como está configurado o Nginx, [clique Aqui](./tree/master/nginx);
+  - Para maiores informações de como está configurado o PostgreSQL, [clique aqui](./tree/master/postgres);
+  - Para maiores informações de como está configurado e como foi programado o Restfull, [clique aqui](./tree/master/rest);
+  - Para maiores informações de como está configurado e como foi programado o serviço Web, [clique aqui](./tree/master/web).
 
 Fim.
