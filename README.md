@@ -76,9 +76,9 @@ Entre no diretório, dê permissão de execução ( chmod +x vote.sh ) e rode el
 - **Algumas dicas:**
   - Para rodar o programa docker-compose up, será preciso ter acesso root;
   - A porta 80 será usada pelo programa Nginx, então antes de subir, favor liberá-la;
-  - Para maiores informações de como está configurado o Nginx, [clique Aqui](./tree/master/nginx);
-  - Para maiores informações de como está configurado o PostgreSQL, [clique aqui](./tree/master/postgres);
-  - Para maiores informações de como está configurado e como foi programado o Restfull, [clique aqui](./tree/master/rest);
-  - Para maiores informações de como está configurado e como foi programado o serviço Web, [clique aqui](./tree/master/web).
+  - Para maiores informações de como está configurado o Nginx, [clique aqui](../../tree/master/nginx);
+  - Para maiores informações de como está configurado o PostgreSQL, [clique aqui](../../tree/master/postgres);
+  - Para maiores informações de como está configurado e como foi programado o Restfull, [clique aqui](../../tree/master/rest);
+  - Para maiores informações de como está configurado e como foi programado o serviço Web, [clique aqui](../../tree/master/web).
 
 Fim.
