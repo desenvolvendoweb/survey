@@ -1,0 +1,24 @@
+{% extends 'vote/main.html' %}
+
+{% block content %}
+
+  <form action="{% url 'home' survey.id %}{{ survey.title|slugify }}" method="POST">
+    {% csrf_token %}
+    <div class="content">
+      <h3 class="questao">{{ survey.title }}</h3>
+      {% for alt in survey.alternatives %}
+        <div class="radio"><label><input type="radio" name="alternative" value="{{ alt.id }}" />&nbsp;&nbsp;{{ alt.title }}</label></div>
+      {% endfor %}
+      {% if survey.alternatives.exists %}
+        <div class="col-sm-12">
+          {% if error %}
+            <label class="erro">{{ error }}</label>
+          {% endif %}
+          <button type="submit" class="btn pull-right btn-success">Confirmar</button>
+          <input type="hidden" value="{{ survey.id }}" name="survey" />
+        </div>
+      {% endif %}
+    </div>
+  </form>
+
+{% endblock content %}

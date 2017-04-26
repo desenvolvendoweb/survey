@@ -1,0 +1,46 @@
+{% load static %}<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Enquete</title>
+    <link rel="stylesheet" type="text/css" href="{% static "css/main.css" %}" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    {% block extra-css %}{% endblock extra-css %}
+    {% block extra-js %}{% endblock extra-js %}
+
+  </head>
+
+  <body>
+
+    <div id="lateral">
+
+      {% block menu %}
+
+        <div id="menu">
+
+          <h3 class="link-titulo">Escolha a enquete:</h3>
+            <ul class="box">
+              {% for lsm in list_survey_menu %}
+                <li><a href="{% url 'home' lsm.id %}{{ lsm.title|slugify }}">{{ lsm.title }}</a></li>
+              {% endfor %}
+            </ul>
+
+        </div> <!-- /#menu -->
+      </div id="link">
+
+      {% endblock menu %}
+
+      {% block content %}
+
+      {% endblock content %}
+
+      <div>
+    </div> <!-- /#lateral -->
+
+  </body>
+</html>
