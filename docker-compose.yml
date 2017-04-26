@@ -1,0 +1,56 @@
+version: "3"
+
+volumes:
+  static:
+    driver: local
+
+services:
+
+  postgres:
+    restart: always
+    image: postgres:latest
+    volumes:
+      - ./postgres/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
+    expose:
+      - "5432"
+    env_file: ./web/.env
+
+  nginx:
+    restart: always
+    build: ./nginx
+    ports:
+      - "80:80"
+    volumes:
+      - static:/var/www/static
+    links:
+      - web:web
+
+  web:
+    restart: always
+    build: ./web
+    links:
+      - postgres:postgres
+    expose:
+      - "8000"
+    volumes:
+      - ./web:/var/www/src
+      - static:/var/www/static
+    env_file: ./web/.env
+    working_dir: /var/www/src
+    command: ["./wait-for-postgres.sh", "--", "./common.sh"]
+    depends_on:
+      - postgres
+
+  rest:
+    build: ./rest
+    working_dir: /var/www/src/rest/src/api
+    command: sh -c "go get -v && go build && ./api"
+    volumes:
+      - ./rest/go/src/api:/var/www/src/rest/src/api
+    env_file:
+      - ./web/.env
+      - ./rest/.env
+    expose:
+      - "8080"
+    depends_on:
+      - postgres
